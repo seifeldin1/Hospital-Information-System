@@ -38,8 +38,8 @@ const userSchema = new mongoose.Schema({
       },
     },
   },
-  role: { type: String, required: [true, "Role is required"] },
-  gender: { type: String, required: [true, "Gender is required"] },
+  role: { type: String, required: [true, "Role is required"], enum: ["admin", "doctor", "patient"] },
+  gender: { type: String, required: [true, "Gender is required"], enum: ["male", "female"] },
   phone: { type: Number, required: [true, "Phone is required"] },
   birthDate: { type: Date, required: [true, "Birth date is required"] },
 });
