@@ -3,6 +3,7 @@ import connectDB from "./Config/database";
 import dotenv from "dotenv";
 import { errorController } from "./Controllers/error.controller";
 import CustomError from "./Utils/customError";
+import feedbackRoutes from "./Routes/feedback.routes";
 
 dotenv.config();
 
@@ -10,19 +11,16 @@ const app = express();
 
 connectDB();
 
+app.use(express.json());
 
+app.use("/feedback", feedbackRoutes);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
   next(new CustomError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 app.use(errorController);
 
-function greet(name: string): string {
-    return `Hello, ${name}! Welcome to TypeScript!`;
-  }
 
-  const message = greet("Seifeldin");
-  console.log(message);
   
 
   app.listen(process.env.PORT, () => {
