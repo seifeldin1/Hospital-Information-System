@@ -10,7 +10,7 @@ export const editDoctorInfo = async(req:Request , res:Response , next:NextFuncti
         const updateFields: any = {}
         if(email){
             const existingDoctor = await Doctor.findOne({email: email})
-            if(existingDoctor && existingDoctor._id !== doctorId)
+            if(existingDoctor && existingDoctor.doctorID.toString() !== doctorId)
                 return res.status(400).json({message: "Email is already in use"})
             updateFields.email = email;
         }
@@ -27,8 +27,7 @@ export const editDoctorInfo = async(req:Request , res:Response , next:NextFuncti
             return res.status(404).json({ message: "Doctor not found" })
         res.status(200).json({message: "Doctor Info Updated Successfully", data: updatedDoctor})
     }catch(err){
-        console.log(err)
-        return res.status(500).json({message: err})
+        next(err)
     }
 }
 
@@ -76,8 +75,7 @@ export const addDoctor = async(req:Request , res:Response , next:NextFunction)=>
             doctor:doctor,
         })
     } catch(err){
-        console.log(err)
-        return res.status(500).json({message: err})
+        next(err)
     }
 }
 
@@ -89,8 +87,7 @@ export const deleteDoctor = async (req:Request , res:Response , next:NextFunctio
             return res.status(404).json({message: "Doctor not found"})
         return res.status(200).json({message: "Doctor Deleted Successfully"})
     }catch(err){
-        console.log(err)
-        res.status(500).json({message:err})
+        next(err)
     }
 }
 
@@ -103,8 +100,7 @@ export const getDoctor = async(req:Request , res:Response , next:NextFunction)=>
             return res.status(404).json({message: "Doctor not found"})
         return res.status(200).json({doctor:doctor})
     }catch(err){
-        console.log(err)
-        res.status(500).json({message:err})
+        next(err)
     }
 }
 
@@ -113,8 +109,7 @@ export const getAllDoctors = async(req:Request , res:Response , next:NextFunctio
         const doctors = await Doctor.find()
         return res.status(200).json({doctors:doctors})
     }catch(err){
-        console.log(err)
-        res.status(500).json({message:err})
+        next(err)
     }
 }
 

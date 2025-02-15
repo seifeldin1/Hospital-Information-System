@@ -9,7 +9,6 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  confirmPassword: string;
   role: string;
   gender: string;
   phone: number;
@@ -61,7 +60,7 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-userSchema.plugin(mongooseSequence, { inc_field: "doctorID" })
+userSchema.plugin(mongooseSequence, { inc_field: "userID" })
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
