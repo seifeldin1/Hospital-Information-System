@@ -60,6 +60,15 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+// Define a virtual property for 'name'
+userSchema.virtual('name').get(function() {
+  return `${this.FirstName} ${this.SecondName}`;
+});
+
+// Ensure virtual fields are serialized
+userSchema.set('toJSON', { virtuals: true });
+userSchema.set('toObject', { virtuals: true });
+
 userSchema.plugin(mongooseSequence, { inc_field: "userID" })
 
 userSchema.pre("save", async function (next) {
