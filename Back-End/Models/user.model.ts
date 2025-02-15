@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
+const mongooseSequence = require("mongoose-sequence")(mongoose)
 
 export interface IUser extends Document {
   firstName: string;
@@ -13,41 +14,58 @@ export interface IUser extends Document {
   gender: string;
   phone: number;
   birthDate: Date;
+  userId:number
 }
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: [true, "Name is required"] },
-  email: {
-    type: String,
-    required: [true, "Email is required"],
-    unique: [true, "Email already exists"],
-    validate: [validator.isEmail, "Invalid email format"],
-  },
-  password: { 
-    type: String,
-    required: [true, "Password is required"],
-    minlength: [8, "Password must be at least 8 characters long"],
-    select: false,
-  },
-  confirmPassword: {
-    type: String,
-    required: [true, "Confirm password is required"],
-    validate: {
-      validator: function (this: any,val: string) {
-        return val === this.password;
-      },
+    userID: { 
+        type: Number, 
+        unique: true 
     },
-  },
-  role: { type: String, required: [true, "Role is required"], enum: ["admin", "doctor", "patient"] },
-  gender: { type: String, required: [true, "Gender is required"], enum: ["male", "female"] },
-  phone: { type: Number, required: [true, "Phone is required"] },
-  birthDate: { type: Date, required: [true, "Birth date is required"] },
+    FirstName: { 
+        type: String, 
+        required: [true, "First Name is required"] 
+    },
+    SecondName: { 
+        type: String, 
+        required: [true, "Second Name is required"] 
+    },
+    email: {
+        type: String,
+        required: [true, "Email is required"],
+        unique: [true, "Email already exists"],
+        validate: [validator.isEmail, "Invalid email format"],
+    },
+    password: { 
+        type: String,
+        required: [true, "Password is required"],
+        select: false,
+    },
+    role: { 
+        type: String, 
+        required: [true, "Role is required"], 
+        enum: ["admin", "doctor", "patient"] 
+    },
+    gender: { 
+        type: String, 
+        required: [true, "Gender is required"], 
+        enum: ["male", "female"] 
+    },
+    phone: { 
+        type: Number, 
+        required: [true, "Phone is required"] 
+    },
+    birthDate: { 
+        type: Date, 
+        required: [true, "Birth date is required"] 
+    },
 });
+
+userSchema.plugin(mongooseSequence, { inc_field: "doctorID" })
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12);
-  this.confirmPassword = undefined as unknown as string;
   next();
 });
 
