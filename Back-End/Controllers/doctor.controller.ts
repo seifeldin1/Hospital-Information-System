@@ -3,7 +3,10 @@ import {Request , Response , NextFunction} from "express"
 
 export const editDoctorInfo = async(req:Request , res:Response , next:NextFunction)=>{
     try{
-        const {birthDate , email , phoneNumber} = req.body
+        const {
+            birthDate, 
+            email , 
+            phoneNumber} = req.body
         const doctorId = req.params.doctorID
         if (!doctorId)
             return res.status(400).json({message: "Doctor ID is required"})
@@ -62,8 +65,8 @@ export const addDoctor = async(req:Request , res:Response , next:NextFunction)=>
             email: dEmail ,
             phone: phoneNumber ,
             birthDate:birthDate ,
-            FirstName:Fname ,
-            LastName:Lname ,
+            firstName:Fname ,
+            lastName:Lname ,
             gender:gender ,
             ExpertiseLevel:expLevel ,
             password:password, 
