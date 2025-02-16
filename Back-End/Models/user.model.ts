@@ -9,7 +9,6 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  confirmPassword: string;
   role: string;
   gender: string;
   phone: number;
@@ -61,7 +60,16 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-userSchema.plugin(mongooseSequence, { inc_field: "doctorID" })
+// Define a virtual property for 'name'
+userSchema.virtual('name').get(function() {
+  return `${this.FirstName} ${this.SecondName}`;
+});
+
+// Ensure virtual fields are serialized
+userSchema.set('toJSON', { virtuals: true });
+userSchema.set('toObject', { virtuals: true });
+
+userSchema.plugin(mongooseSequence, { inc_field: "userID" })
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
