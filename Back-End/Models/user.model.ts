@@ -22,11 +22,11 @@ const userSchema = new mongoose.Schema({
         type: Number, 
         unique: true 
     },
-    FirstName: { 
+    firstName: { 
         type: String, 
         required: [true, "First Name is required"] 
     },
-    SecondName: { 
+    lastName: { 
         type: String, 
         required: [true, "Second Name is required"] 
     },
