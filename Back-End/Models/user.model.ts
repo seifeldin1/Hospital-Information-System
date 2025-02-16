@@ -62,7 +62,7 @@ const userSchema = new mongoose.Schema({
 
 // Define a virtual property for 'name'
 userSchema.virtual('name').get(function() {
-  return `${this.FirstName} ${this.SecondName}`;
+  return `${this.firstName} ${this.lastName}`;
 });
 
 // Ensure virtual fields are serialized
