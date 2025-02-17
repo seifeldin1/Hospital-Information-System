@@ -3,7 +3,7 @@ import connectDB from "./Config/database";
 import dotenv from "dotenv";
 import { errorController } from "./Controllers/error.controller";
 import CustomError from "./Utils/customError";
-import feedbackRoutes from "./Routes/feedback.routes";
+import router from './Routes/api.route';
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ connectDB();
 
 app.use(express.json());
 
-app.use("/feedback", feedbackRoutes);
+app.use(router);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
   next(new CustomError(`Can't find ${req.originalUrl} on this server!`, 404));
