@@ -38,12 +38,12 @@ const userSchema = new mongoose.Schema({
     password: { 
         type: String,
         required: [true, "Password is required"],
-        select: false,
+        //select: false,
     },
     role: { 
         type: String, 
         required: [true, "Role is required"], 
-        enum: ["admin", "doctor", "patient"] 
+        enum: ["Admin", "Doctor", "Patient"] 
     },
     gender: { 
         type: String, 

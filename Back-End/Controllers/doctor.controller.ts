@@ -1,16 +1,22 @@
 import Doctor from "../Models/doctor.model";
+import  User from "../Models/user.model";
+
 import {Request , Response , NextFunction} from "express"
 
-export const editDoctorInfo = async(req:Request , res:Response , next:NextFunction)=>{
+exports.editDoctorInfo = async(req:Request , res:Response ) => {
     try{
         const {
             birthDate, 
             email , 
-            phoneNumber} = req.body
+            phoneNumber
+        } = req.body
+
         const doctorId = req.params.doctorID
-        if (!doctorId)
+        if (!doctorId){
             return res.status(400).json({message: "Doctor ID is required"})
+        }
         const updateFields: any = {}
+        
         if(email){
             const existingDoctor = await Doctor.findOne({email: email})
             if(existingDoctor && existingDoctor.doctorID.toString() !== doctorId)
@@ -23,22 +29,24 @@ export const editDoctorInfo = async(req:Request , res:Response , next:NextFuncti
                 return res.status(400).json({message: "Phone Number is already in use"})
             updateFields.phone = phoneNumber
         }
-        if(birthDate)
+        if(birthDate){
             updateFields.birthDate = birthDate
+        }
         const updatedDoctor = await Doctor.findOneAndUpdate({doctorID:doctorId}, updateFields, { new: true });
-        if (!updatedDoctor) 
+        if (!updatedDoctor){
             return res.status(404).json({ message: "Doctor not found" })
+        }
         res.status(200).json({message: "Doctor Info Updated Successfully", data: updatedDoctor})
     }catch(err){
-        next(err)
+        res.status(500).json({error: err})
     }
 }
 
 
-export const addDoctor = async(req:Request , res:Response , next:NextFunction)=>{
+exports.addDoctor = async(req:Request , res:Response )=>{
     try{
-        const {dEmail , phoneNumber , birthDate , Fname , Lname , gender , expLevel , password} = req.body
-        if(!dEmail)
+        const {email , phoneNumber , birthDate , Fname , Lname , gender , expLevel , password} = req.body
+        if(!email)
             return res.status(400).json({message: "Email is required"})
         if(!phoneNumber)
             return res.status(400).json({message: "Phone Number is required"})
@@ -54,7 +62,7 @@ export const addDoctor = async(req:Request , res:Response , next:NextFunction)=>
             return res.status(400).json({message: "Password is required"})
         if(password.length < 8)
             return res.status(400).json({message: "Password must be at least 8 characters"})
-        const existingEmail = await Doctor.findOne({email: dEmail})
+        const existingEmail = await Doctor.findOne({email:email})
         if(existingEmail)
             return res.status(400).json({message: "Email is already in use"})
         const existingPhone = await Doctor.findOne({phone: phoneNumber})
@@ -62,7 +70,7 @@ export const addDoctor = async(req:Request , res:Response , next:NextFunction)=>
             return res.status(400).json({message: "Phone Number is already in use"})
 
         const newDoctor = new Doctor({
-            email: dEmail ,
+            email: email ,
             phone: phoneNumber ,
             birthDate:birthDate ,
             firstName:Fname ,
@@ -78,11 +86,11 @@ export const addDoctor = async(req:Request , res:Response , next:NextFunction)=>
             doctor:doctor,
         })
     } catch(err){
-        next(err)
+        res.status(500).json({error: err})
     }
 }
 
-export const deleteDoctor = async (req:Request , res:Response , next:NextFunction)=>{
+exports.deleteDoctor = async (req:Request , res:Response )=>{
     try{
         const id = req.params.doctorID
         const doctor = await Doctor.findOneAndDelete({doctorID:id})
@@ -90,12 +98,12 @@ export const deleteDoctor = async (req:Request , res:Response , next:NextFunctio
             return res.status(404).json({message: "Doctor not found"})
         return res.status(200).json({message: "Doctor Deleted Successfully"})
     }catch(err){
-        next(err)
+        res.status(500).json({error: err})
     }
 }
 
 
-export const getDoctor = async(req:Request , res:Response , next:NextFunction)=>{
+exports.getDoctor = async(req:Request , res:Response )=>{
     try{
         const id = req.params.doctorID
         const doctor = await Doctor.findOne({doctorID:id})
@@ -103,16 +111,16 @@ export const getDoctor = async(req:Request , res:Response , next:NextFunction)=>
             return res.status(404).json({message: "Doctor not found"})
         return res.status(200).json({doctor:doctor})
     }catch(err){
-        next(err)
+        res.status(500).json({error: err})
     }
 }
 
-export const getAllDoctors = async(req:Request , res:Response , next:NextFunction)=>{
+exports.getAllDoctors = async(req:Request , res:Response )=>{
     try{
         const doctors = await Doctor.find()
         return res.status(200).json({doctors:doctors})
     }catch(err){
-        next(err)
+        res.status(500).json({error: err})
     }
 }
 

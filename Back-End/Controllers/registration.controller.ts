@@ -5,7 +5,7 @@ import User from "../Models/user.model"
 import dotenv from "dotenv";
 
 
-export const register = async (req: Request, res: Response) => {
+exports.register = async (req: Request, res: Response) => {
     try {
         const{
             firstName,
@@ -15,9 +15,7 @@ export const register = async (req: Request, res: Response) => {
             email,
             phone,
             password,
-            role
         } = req.body
-        const hashedPassword = await bcrypt.hash(password, 10)
         const user = new User({
             firstName: firstName,
             lastName:lastName,
@@ -25,7 +23,8 @@ export const register = async (req: Request, res: Response) => {
             gender: gender,
             email: email,
             phone: phone,
-            password: hashedPassword
+            password: password,
+            role:"Patient"
         })
 
         const existingUser = await User.findOne({email: email})
@@ -59,21 +58,41 @@ const generateToken= (id:number , email:string , role:string) =>{
 
 }
 
-export const login = async (req: Request, res: Response) => {
+exports.login = async (req: Request, res: Response) => {
     try {
-        const { email, password } = req.body
-        const user = await User.findOne({ email: email })
+        const testPassword = "password123";  // The password you're testing
+        const testHash = "$2b$12$uoDcEGdllq2nV/h1hobSxeydbLk10MF4nWJuBJMEkAzp3sqtzu0cG";      // The hashed password from your database
+
+        const isMatch = await bcrypt.compare(testHash, testPassword);
+        console.log("Password match result test:", isMatch);
+
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ message: "Email and password are required" });
+        }
+
+        console.log("Login request received:", { email, password });
+
+        const user = await User.findOne({ email: email });
         if (!user) {
-            return res.status(400).json({ message: "Invalid email" })
+            return res.status(400).json({ message: "Invalid email" });
         }
-        const isValidPassword = await bcrypt.compare(password, user.password)
+
+        console.log("User found:", user);
+
+        // Ensure password hash exists in user object
+        console.log("User password from database:", user.password);
+
+        const isValidPassword = await bcrypt.compare(password, user.password);
         if (!isValidPassword) {
-            return res.status(400).json({ message: "Invalid password" })
+            return res.status(400).json({ message: "Invalid password" });
         }
-        generateToken(user.userId, user.email, user.role)
-        res.status(200).json({ message: "Logged in successfully"  , userDetails: user})
-    }catch(err){
-            console.log(err)
-            res.status(500).json({message:err})
+
+        const token = generateToken(user.userId, user.email, user.role);
+        res.status(200).json({ message: "Logged in successfully", userDetails: user, token: token });
+    } catch (err) {
+        console.error("Error during login:", err);
+        res.status(500).json({ message: "Internal server error" });
     }
-}
+};
