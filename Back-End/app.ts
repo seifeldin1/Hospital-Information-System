@@ -6,6 +6,7 @@ import CustomError from "./Utils/customError";
 import feedbackRoutes from "./Routes/feedback.routes";
 import doctorRoutes from "./Routes/doctor.routes";
 import registrationRoutes from "./Routes/registration.routes";
+import router from './Routes/api.route';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use("/feedback", feedbackRoutes);
 app.use("/doctor" , doctorRoutes)
 app.use("/" , registrationRoutes)
 
+app.use(router);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
   next(new CustomError(`Can't find ${req.originalUrl} on this server!`, 404));
