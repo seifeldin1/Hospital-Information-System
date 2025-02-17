@@ -3,7 +3,174 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column; /* Stack navbar, content, footer vertically */
+            padding-top: 70px; /*  Space for the fixed navbar */
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap; /*  Wrap to next line on smaller screens */
+            justify-content: space-between; /* Space between login and image */
+            align-items: flex-start; /* Align to top */
+            padding: 20px; /* Add some padding around the content */
+            flex-grow: 1; /* Allow the main content to fill available space */
+        }
+
+
+        .login-box {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;  /* Full width within its column */
+            max-width: 400px; /* Limit maximum width */
+           margin-left: 11rem;
+            margin-top: 2rem; 
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .login-box p {
+            margin-top: 15px;
+        }
+
+        /*  Styles for the footer */
+        footer .container {
+            width: 100%;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+        }
+
+        /*  Social Icon Styles (Optional, if using Font Awesome) */
+         .fab {
+            color: #007bff; /* Bootstrap primary color */
+            margin-right: 10px;
+        }
+
+        .fab:hover {
+             color: #0056b3; /* Darker blue on hover */
+        }
+
+         a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #0056b3;
+        }
+
+
+        /* Other Styles from your original (kept for consistency, adjust if needed) */
+        .map-responsive {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .map-responsive iframe {
+            position: absolute;
+            align-content: center;
+            top: 0;
+            left: 0;
+            width: 75%;
+            height: 75%;
+        }
+
+          /* Image column styling */
+        .image-column {
+            flex: 0 0 48%;  /*  Slightly less than 50% to allow for spacing */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-column img {
+            max-width: 100%; /*  Don't exceed container */
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .form-column{
+            flex: 0 0 48%;
+        }
+
+        footer .container {
+            width: 100%;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column; /* Stack on smaller screens */
+                align-items: center; /* Center on smaller screens */
+            }
+            .form-column, .image-column {
+                flex: 0 0 100%; /* Full width on smaller screens */
+            }
+             .login-box{
+                margin-bottom:1rem;
+             }
+        }
+
+        /* Appointment Button Styling */
+        #book-appointment .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 8px;
+        }
+
+        #book-appointment .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for the booking form */
+        #book-appointment-form {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #book-appointment-form h2 {
+            font-weight: bold;
+        }
+
+        #book-appointment-form .form-control {
+            border-radius: 5px;
+        }
+
+        #book-appointment-form button {
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+        }
+
+        #book-appointment-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -28,26 +195,80 @@
         </div>
     </nav>
 
-    <!--simple login form -->
-    <div class="container">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+    <div class="main-content">
+       <div class="form-column">
+            <div class="login-box">
+                <h1>Login</h1>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+
+        <div class="image-column">
+            <img src="login.webp" alt="Radiology Image" >
+        </div>
     </div>
+
+    <footer class="footer mt-auto py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Section -->
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: <a href="mailto:radiology@hospital.com">radiology@hospital.com</a></li>
+                        <li>Phone: (123) 456-7890</li>
+                        <li>Address: 123 Hospital St., Cityville</li>
+                    </ul>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="login.html">Patient Login</a></li>
+                        <li><a href="#">Book Appointment</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Social Media Links -->
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled d-flex">
+                        <li class="mr-3">
+                            <a href="#"><i class="fab fa-facebook fa-2x"></i> Facebook</a>
+                        </li>
+                        <li class="mr-3">
+                            <a href="#"><i class="fab fa-twitter fa-2x"></i> Twitter</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-instagram fa-2x"></i> Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="text-center mt-4">
+                <span class="text-muted">&copy; 2025 Radiology Department, Hospital Information System. BIGFATMAN.</span>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
-</body>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEA/3uW77Wv7eJ9/HF8lcr5pD4x54dExrs7a+guToA+5FhWd9F5j9a/9F6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/script.js"></script>  </body>
 </html>

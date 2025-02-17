@@ -1,69 +1,187 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Radiology Department</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <nav class="navbar..."> </nav>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Main section background */
+        body {
+            
+            background: linear-gradient(135deg, rgba(80, 140, 240, 0.5), rgba(100, 160, 230, 0.4));
+            margin: 0;
+            padding: 0;
+        }
 
-    <div class="container">
+        /* About section container */
+        .about-container {
+            padding: 60px 20px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgb(134, 177, 251), rgb(100, 161, 230));
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin: 80px auto;
+        }
+
+        /* Text and headings */
+        h1, h2, p, ul li {
+            color: black;
+            
+        }
+
+        /* Image styling */
+        img.img-fluid {
+            border: 4px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Card style for sections */
+        .about-card {
+            background: rgba(200, 200, 200, 0.9);
+            color: black;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navbar adjustments */
+        .nav-item .nav-link {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">Radiology Department</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Us Section -->
+    <div class="container about-container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <h1 class="text-center">About Us</h1>
+                <img src="images/team.webp" alt="Our Team" width="590" height="200" class="img-fluid rounded mx-auto d-block mb-4">
 
-                <img src="images/team.webp" alt="Our Team (Probably Aliens)" width="590" height="200" class="img-fluid rounded mx-auto d-block mb-4">
+                <div class="about-card">
+                    <p>
+                        Welcome to the Radiology Department, where we use cutting-edge technology (and a healthy dose of guesswork) to peer into the shadowy depths of your anatomy. We're a team of highly trained professionals (at least more than a week), dedicated to providing you with the most... *interesting* diagnostic imaging experience this side of the uncanny valley.
+                    </p>
+                </div>
 
-                <p>
-                    Welcome to the Radiology Department, where we use cutting-edge technology (and a healthy dose of guesswork) to peer into the shadowy depths of your anatomy. We're a team of highly trained professionals (at least more than a week), dedicated to providing you with the most... *interesting* diagnostic imaging experience this side of the uncanny valley.
-                </p>
+                <h2>Our Mission</h2>
+                <div class="about-card">
+                    <p>
+                        Our mission is to make sure you don't have any extra organs you weren't aware of. We strive to provide accurate results (most of the time), so you can get back to your regularly boring life.
+                    </p>
+                </div>
 
-                <h2>Our Mission (If We Choose to Accept It)</h2>
-                <p>
-                    Our mission is to make sure you don't have any extra organs you weren't aware of. We strive to provide accurate results (most of the time), so you can get back to your regularly boring life .
-                </p>
+                <h2>Our Team</h2>
+                <div class="about-card">
+                    <ul>
+                        <li><strong>Dr. Kareem (The Otterly Clueless):</strong> Our resident otter, whose diagnostic skills are inversely proportional to his ability to keep his lab coat clean.</li>
+                        <li><strong>Dr. Nihad (The Owl of Ominous Wisdom... and Questionable ACTIONS):</strong> Our enigmatic owl, who speaks in riddles and dispenses medical advice alongside dubious-looking candies.</li>
+                        <li><strong>Dr. Mohamed (The Bear Minimum):</strong> Our lovable bear, whose bedside manner is only slightly hampered by his tendency to accidentally perform good adjustments.</li>
+                        <li><strong>And a collection of other individuals who may or may not be human. We're not entirely sure.</strong></li>
+                    </ul>
+                </div>
 
-                <h2>Our Team (The Freaks, Geeks, and X-ray Enthusiasts)</h2>
-                <p>
-                    We're a motley crew, united by our shared fascination with bones and the strange noises our machines make (except Nihad we are just scared of her). Our team includes:
-                </p>
-
-                <ul>
-                    <li><strong>Dr. Kareem (The Otterly Clueless):</strong> Our resident otter, whose diagnostic skills are inversely proportional to his ability to keep his lab coat clean. He swears he saw a spleen once... maybe.</li>
-                    <li><strong>Dr. Nihad (The Owl of Ominous Wisdom... and Questionable ACTIONS):</strong> Our enigmatic owl, who speaks in riddles and dispenses medical advice alongside dubious-looking candies.  She's rumored to have a PhD in radiology (we are not sure) and KILLING?.</li>
-                    <li><strong>Dr. Mohamed (The Bear Minimum):</strong> Our lovable bear, whose bedside manner is only slightly hampered by his tendency to accidentally perform good adjustments.</li>
-                    <li><strong>And a collection of other individuals who may or may not be human. We're not entirely sure.</strong></li>
-                </ul>
-
-                <h2>Why Choose Us? (Besides the Sheer Weirdness Factor)</h2>
-                <p>
-                    Because we're... unique! We offer:
-                </p>
-
-                <ul>
-                    <li>Equipment that's probably up to code (mostly).</li>
-                    <li>A staff that's... enthusiastic.</li>
-                    <li>Results that are... definitely something.</li>
-                    <li>And an experience you'll never forget (for better or worse).</li>
-                </ul>
-
-                <p>
-                    So, if you're feeling brave (or just really need a picture of your insides), come on down! We promise it'll be an adventure... possibly a life-altering one.
-                </p>
+                <h2>Why Choose Us?</h2>
+                <div class="about-card">
+                    <ul>
+                        <li>Equipment that's probably up to code (mostly).</li>
+                        <li>A staff that's... enthusiastic.</li>
+                        <li>Results that are... definitely something.</li>
+                        <li>And an experience you'll never forget (for better or worse).</li>
+                    </ul>
+                </div>
 
                 <p>
-                    <strong>Disclaimer:</strong> We are not responsible for any sudden mutations, spontaneous combustions, or existential dread. Also, if you happen to die, Dr. Nihad said she warned you.
+                    <strong>Disclaimer:</strong> We are not responsible for any sudden mutations, spontaneous combustions, or existential dread.
                 </p>
             </div>
         </div>
     </div>
 
+    <footer class="footer mt-auto py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Section -->
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: <a href="mailto:radiology@hospital.com">radiology@hospital.com</a></li>
+                        <li>Phone: (123) 456-7890</li>
+                        <li>Address: 123 Hospital St., Cityville</li>
+                    </ul>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="login.html">Patient Login</a></li>
+                        <li><a href="#">Book Appointment</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Social Media Links -->
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled d-flex">
+                        <li class="mr-3">
+                            <a href="#"><i class="fab fa-facebook fa-2x"></i> Facebook</a>
+                        </li>
+                        <li class="mr-3">
+                            <a href="#"><i class="fab fa-twitter fa-2x"></i> Twitter</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-instagram fa-2x"></i> Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="text-center mt-4">
+                <span class="text-muted">&copy; 2025 Radiology Department, Hospital Information System. BIGFATMAN.</span>
+            </div>
+        </div>
+    </footer>
+    
+    <style>
+
+        .fab {
+        color: #007bff; /* Bootstrap primary color */
+        margin-right: 10px;
+    }
+
+    .fab:hover {
+        color: #0056b3; /* Darker blue on hover */
+    }
+
+    </style>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
 </body>
-</html>
