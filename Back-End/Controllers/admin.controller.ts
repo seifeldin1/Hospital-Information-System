@@ -19,10 +19,10 @@ import {Request , Response , NextFunction} from "express";
         try {
             const patientId = req.params.id;
             if(!patientId)
-                return res.status(400).json({message:"No Doctor Id provided!"});
+                return res.status(400).json({message:"No patient Id provided!"});
             else{
                 await User.findByIdAndDelete({ userId: patientId });
-                res.status(200).json('Doctor Retired Successfully!');
+                res.status(200).json('Patient rmoved successfully!!');
             }
         } catch (err) {
         next(err);
@@ -30,8 +30,8 @@ import {Request , Response , NextFunction} from "express";
     }
     exports.getAllPatients=async(req:Request, res:Response,next:NextFunction): Promise<Response | void> => {
         try {
-            await User.find({ role: 'patient' });
-            res.status(200).json('Doctor Retired Successfully!');
+            const doctors=await User.find({ role: 'patient' });
+            res.status(200).json(doctors);
         } catch (err) {
         next(err);
         }
