@@ -54,8 +54,6 @@ const generateToken= (id:number , email:string , role:string) =>{
         jwtKey, 
         {expiresIn:"1h"})
         return token
-
-
 }
 
 exports.login = async (req: Request, res: Response) => {
