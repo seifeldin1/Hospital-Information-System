@@ -88,6 +88,7 @@ exports.login = async (req: Request, res: Response) => {
         }
 
         const token = generateToken(user.userId, user.email, user.role);
+        res.cookie('token', token, { httpOnly: true, maxAge: 3600000 }); 
         res.status(200).json({ message: "Logged in successfully", userDetails: user, token: token });
     } catch (err) {
         console.error("Error during login:", err);

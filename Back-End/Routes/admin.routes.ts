@@ -1,6 +1,8 @@
 import express from 'express';
+import verifyToken from '../Middleware/verifyToken';
 const adminController = require('../Controllers/admin.controller')
 const doctorController = require('../Controllers/doctor.controller')
+import verifyRole from '../Middleware/verifyRole';
 
 const router=express.Router();
 
