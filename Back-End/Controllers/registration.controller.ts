@@ -60,11 +60,11 @@ const generateToken= (id:number , email:string , role:string) =>{
 
 exports.login = async (req: Request, res: Response) => {
     try {
-        const testPassword = "password123";  // The password you're testing
-        const testHash = "$2b$12$uoDcEGdllq2nV/h1hobSxeydbLk10MF4nWJuBJMEkAzp3sqtzu0cG";      // The hashed password from your database
+        // const testPassword = "password123";  // The password you're testing
+        // const testHash = "$2b$12$uoDcEGdllq2nV/h1hobSxeydbLk10MF4nWJuBJMEkAzp3sqtzu0cG";      // The hashed password from your database
 
-        const isMatch = await bcrypt.compare(testHash, testPassword);
-        console.log("Password match result test:", isMatch);
+        // const isMatch = await bcrypt.compare(testHash, testPassword);
+        // console.log("Password match result test:", isMatch);
 
         const { email, password } = req.body;
 
