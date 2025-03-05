@@ -1,46 +1,82 @@
 import Doctor from "../Models/doctor.model";
 import  User from "../Models/user.model";
+import mongoose from "mongoose";
 
 import {Request , Response , NextFunction} from "express"
 
-exports.editDoctorInfo = async(req:Request , res:Response ) => {
-    try{
-        const {
-            birthDate, 
-            email , 
-            phoneNumber
-        } = req.body
 
-        const doctorId = req.params.doctorID
-        if (!doctorId){
-            return res.status(400).json({message: "Doctor ID is required"})
+
+exports.editDoctorInfo = async (req: Request, res: Response) => {
+    try {
+        const { birthDate, email, phoneNumber } = req.body;
+        const doctorId = req.params.id; // Use MongoDB _id from URL
+
+        // Validate ObjectId
+        if (!mongoose.Types.ObjectId.isValid(doctorId)) {
+            return res.status(400).json({ message: "Invalid doctor ID" });
         }
-        const updateFields: any = {}
-        
-        if(email){
-            const existingDoctor = await Doctor.findOne({email: email})
-            if(existingDoctor && existingDoctor.doctorID.toString() !== doctorId)
-                return res.status(400).json({message: "Email is already in use"})
+
+        const updateFields: any = {};
+
+        // Check if email is already in use
+        if (email) {
+            const existingDoctor = await Doctor.findOne({ email });
+            if (existingDoctor && existingDoctor._id instanceof mongoose.Types.ObjectId && existingDoctor._id.toString() !== doctorId) {
+                return res.status(400).json({ message: "Email is already in use" });
+            }
             updateFields.email = email;
         }
-        if(phoneNumber){
-            const existingDoctor = await Doctor.findOne({phone: phoneNumber})
-            if(existingDoctor && existingDoctor.doctorID.toString() !== doctorId)
-                return res.status(400).json({message: "Phone Number is already in use"})
-            updateFields.phone = phoneNumber
+
+        // Check if phone number is already in use
+        if (phoneNumber) {
+            const existingDoctor = await Doctor.findOne({ phone: phoneNumber });
+            if (existingDoctor && existingDoctor._id instanceof mongoose.Types.ObjectId && existingDoctor._id.toString() !== doctorId) {
+                return res.status(400).json({ message: "Phone number is already in use" });
+            }
+            updateFields.phone = phoneNumber;
         }
-        if(birthDate){
-            updateFields.birthDate = birthDate
+
+        if (birthDate) {
+            updateFields.birthDate = birthDate;
         }
-        const updatedDoctor = await Doctor.findOneAndUpdate({doctorID:doctorId}, updateFields, { new: true });
-        if (!updatedDoctor){
-            return res.status(404).json({ message: "Doctor not found" })
+
+        // Update the doctor in the database
+        const updatedDoctor = await Doctor.findByIdAndUpdate(
+            doctorId, 
+            { $set: updateFields }, 
+            { new: true }
+        );
+
+        if (!updatedDoctor) {
+            return res.status(404).json({ message: "Doctor not found" });
         }
-        res.status(200).json({message: "Doctor Info Updated Successfully", data: updatedDoctor})
-    }catch(err){
-        res.status(500).json({error: err})
+
+        res.status(200).json({ message: "Doctor info updated successfully", data: updatedDoctor });
+    } catch (err) {
+        res.status(500).json({ error: err });
     }
-}
+};
+
+
+exports.getDoctor = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+
+        // Check if the provided ID is a valid MongoDB ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid doctor ID" });
+        }
+
+        const doctor = await Doctor.findById(id);
+        if (!doctor) {
+            return res.status(404).json({ message: "Doctor not found" });
+        }
+
+        return res.status(200).json({ doctor });
+    } catch (err) {
+        res.status(500).json({ error: err });
+    }
+};
 
 
 exports.addDoctor = async(req:Request , res:Response )=>{
@@ -90,30 +126,26 @@ exports.addDoctor = async(req:Request , res:Response )=>{
     }
 }
 
-exports.deleteDoctor = async (req:Request , res:Response )=>{
-    try{
-        const id = req.params.doctorID
-        const doctor = await Doctor.findOneAndDelete({doctorID:id})
-        if(!doctor)
-            return res.status(404).json({message: "Doctor not found"})
-        return res.status(200).json({message: "Doctor Deleted Successfully"})
-    }catch(err){
-        res.status(500).json({error: err})
-    }
-}
+exports.deleteDoctor = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
 
+        // Check if the ID is valid
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid doctor ID" });
+        }
 
-exports.getDoctor = async(req:Request , res:Response )=>{
-    try{
-        const id = req.params.doctorID
-        const doctor = await Doctor.findOne({doctorID:id})
-        if(!doctor)
-            return res.status(404).json({message: "Doctor not found"})
-        return res.status(200).json({doctor:doctor})
-    }catch(err){
-        res.status(500).json({error: err})
+        const doctor = await Doctor.findByIdAndDelete(id);
+        if (!doctor) {
+            return res.status(404).json({ message: "Doctor not found" });
+        }
+
+        return res.status(200).json({ message: "Doctor deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ error: err });
     }
-}
+};
+
 
 exports.getAllDoctors = async(req:Request , res:Response )=>{
     try{
