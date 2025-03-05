@@ -6,8 +6,8 @@ import verifyRole from '../Middleware/verifyRole';
 
 const router=express.Router();
 
-router.delete('/retire-doctor/:id',adminController.retireDoctor);
+// router.delete('/retire-doctor/:id',adminController.retireDoctor);
 router.delete('/remove-patient/:id',adminController.removePatient);
 router.get('/view-all-patients',adminController.getAllPatients);
-router.get("/view-all-doctors" , doctorController.getAllDoctors)
+// router.get("/view-all-doctors" , doctorController.getAllDoctors)
 export default router;
