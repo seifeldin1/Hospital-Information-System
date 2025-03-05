@@ -1,7 +1,11 @@
 import express from 'express';
-import {adminController} from '../Controllers/admin.controller';
+const adminController = require('../Controllers/admin.controller')
+const doctorController = require('../Controllers/doctor.controller')
 
-const adminRouter=express.Router();
+const router=express.Router();
 
-// adminRouter.delete('/retire-doctor/:id',adminController.retireDoctor);
-export default adminRouter;
+router.delete('/retire-doctor/:id',adminController.retireDoctor);
+router.delete('/remove-patient/:id',adminController.removePatient);
+router.get('/view-all-patients',adminController.getAllPatients);
+router.get("/view-all-doctors" , doctorController.getAllDoctors)
+export default router;

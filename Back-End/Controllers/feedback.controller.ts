@@ -25,6 +25,16 @@ export const feedbackController = {
       next(error);
     }
   },
+  deleteFeedback: async (req: Request, res: Response, next: NextFunction) => { 
+    try {
+       await Feedback.findByIdAndDelete(req.params.id);
+      res.status(200).json({
+        status: "success"
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 

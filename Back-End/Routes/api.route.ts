@@ -1,11 +1,14 @@
 import express from 'express';
 const router=express.Router();
 
-import feedbackRoutes from "../Routes/feedback.routes";
+import feedbackRoutes from "./feedback.routes";
 import adminRouter from './admin.routes';
+import doctorRoutes from './doctor.routes';
+import registrationRoutes from './registration.routes';
 
 router.use("/feedback", feedbackRoutes);
 router.use('/admin',adminRouter);
-
+router.use("/doctor" , doctorRoutes)
+router.use("/" , registrationRoutes)
 
 export default router;
