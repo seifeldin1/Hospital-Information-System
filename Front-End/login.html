@@ -1,274 +1,175 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             min-height: 100vh;
-            background-color: #f8f9fa;
-            display: flex;
-            flex-direction: column; 
-            padding-top: 70px; 
-        }
-
-        .main-content {
-            display: flex;
-            flex-wrap: wrap; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            padding: 20px; 
-            flex-grow: 1; 
-        }
-
-
-        .login-box {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;  
-            max-width: 400px; 
-           margin-left: 11rem;
-            margin-top: 2rem; 
-        }
-
-        h1 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .login-box p {
-            margin-top: 15px;
-        }
-
-        /*  Styles for the footer */
-        footer .container {
-            width: 100%;
-            background-color: #f8f9fa;
-            padding-top: 20px;
-            padding-bottom: 20px;
-
-        }
-
-      
-         .fab {
-            color: #007bff; 
-            margin-right: 10px;
-        }
-
-        .fab:hover {
-             color: #0056b3; 
-        }
-
-         a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: #0056b3;
-        }
-
-
-       
-        .map-responsive {
-            position: relative;
-            overflow: hidden;
-            padding-bottom: 56.25%; 
-            height: 0;
-        }
-
-        .map-responsive iframe {
-            position: absolute;
-            align-content: center;
-            top: 0;
-            left: 0;
-            width: 75%;
-            height: 75%;
-        }
-
-         
-        .image-column {
-            flex: 0 0 48%;  
+            background: linear-gradient(135deg, #6e7dff, #87cefa);
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0;
+            margin: 0;
         }
 
-        .image-column img {
-            max-width: 100%; 
-            height: auto;
-            display: block;
+        .login-box {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
             border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            transition: border 0.3s, box-shadow 0.3s;
         }
 
-        .form-column{
-            flex: 0 0 48%;
+        .form-control:focus {
+            border-color: #6e7dff;
+            box-shadow: 0 0 8px rgba(110, 125, 255, 0.7);
         }
 
-        footer .container {
+        .btn-primary {
+            background-color: #6e7dff;
+            border: none;
+            padding: 14px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #4b5bdb;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
             width: 100%;
             background-color: #f8f9fa;
-            padding-top: 20px;
-            padding-bottom: 20px;
+            padding: 20px;
+            text-align: center;
+            color: #333;
         }
 
-        
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .form-column {
+            flex: 1;
+        }
+
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column; 
-                align-items: center; 
+            .login-box {
+                padding: 30px;
+                max-width: 90%; /* Ensures it fits better on mobile */
             }
-            .form-column, .image-column {
-                flex: 0 0 100%; 
+
+            h1 {
+                font-size: 26px;
             }
-             .login-box{
-                margin-bottom:1rem;
-             }
+
+            .form-control {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .btn-primary {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
         }
 
-        /* Appointment Button Styling */
-        #book-appointment .btn-primary {
-            background-color: #007bff;
-            border: none;
-            padding: 12px 24px;
-            font-size: 18px;
-            border-radius: 8px;
-        }
-
-        #book-appointment .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        
-        #book-appointment-form {
-            background-color: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        #book-appointment-form h2 {
-            font-weight: bold;
-        }
-
-        #book-appointment-form .form-control {
-            border-radius: 5px;
-        }
-
-        #book-appointment-form button {
-            background-color: #007bff;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 24px;
-        }
-
-        #book-appointment-form button:hover {
-            background-color: #0056b3;
+        /* More personalized mobile-friendly styles */
+        @media (max-width: 480px) {
+            .footer {
+                font-size: 12px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Radiology Department</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">Login</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
-
-    <div class="main-content">
-       <div class="form-column">
-            <div class="login-box">
-                <h1>Login</h1>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    <div class="login-box">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
             </div>
-        </div>
-
-        <div class="image-column">
-            <img src="login.webp" alt="Radiology Image" >
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
     </div>
 
-    <footer class="footer mt-auto py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <!-- Contact Section -->
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <ul class="list-unstyled">
-                        <li>Email: <a href="mailto:radiology@hospital.com">radiology@hospital.com</a></li>
-                        <li>Phone: (123) 456-7890</li>
-                        <li>Address: 123 Hospital St., Cityville</li>
-                    </ul>
-                </div>
-    
-                <!-- Quick Links -->
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="login.html">Patient Login</a></li>
-                        <li><a href="#">Book Appointment</a></li>
-                    </ul>
-                </div>
-    
-                <!-- Social Media Links -->
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <ul class="list-unstyled d-flex">
-                        <li class="mr-3">
-                            <a href="#"><i class="fab fa-facebook fa-2x"></i> Facebook</a>
-                        </li>
-                        <li class="mr-3">
-                            <a href="#"><i class="fab fa-twitter fa-2x"></i> Twitter</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-instagram fa-2x"></i> Instagram</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-    
-            <div class="text-center mt-4">
-                <span class="text-muted">&copy; 2025 Radiology Department, Hospital Information System. BIGFATMAN.</span>
-            </div>
-        </div>
+    <footer class="footer">
+        <div>&copy; 2025 Radiology Department, Hospital Information System.</div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" integrity="sha512-yFjZbTYRCJodnuyGlsKamNE/LlEaEA/3uW77Wv7eJ9/HF8lcr5pD4x54dExrs7a+guToA+5FhWd9F5j9a/9F6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/script.js"></script>  </body>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+        
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+        
+            try {
+                const response = await fetch("http://localhost:3000/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+        
+                if (!response.ok) throw new Error("Invalid login credentials");
+        
+                const data = await response.json();
+        
+                alert("Login successful! Welcome, " + data.userDetails.firstName);
+                localStorage.setItem("token", data.token);
+                window.location.href = "profile.html"; 
+            } catch (error) {
+                alert("Login failed: " + error.message);
+            }
+        });
+        </script>
+        
+        
+    </body>
 </html>
