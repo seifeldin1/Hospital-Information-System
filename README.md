@@ -8,7 +8,8 @@ This project is built using Node.js, Express, MongoDB for the backend, and a mod
 - Patient registration and management
 - Doctor management
 - Feedback collection and management
-- Secure authentication using JSON Web Tokens (JWT)
+- Secure authentication and authorization using JSON Web Tokens (JWT)
+-
 
 ## Prerequisites
 
