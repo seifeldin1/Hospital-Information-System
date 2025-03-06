@@ -19,12 +19,9 @@ exports.retireDoctor= async (req:Request, res:Response,next:NextFunction): Promi
 exports.removePatient=async(req:Request, res:Response,next:NextFunction): Promise<Response | void> => {
     try {
         const patientId = req.params.id;
-        console.log(`Received patientId: ${patientId}`); 
         if(!patientId)
             return res.status(400).json({message:"No patient Id provided!"});
         else{
-            const pat= await User.findOne({_id:patientId});
-            console.log(pat);
             const deletedPatient=await User.findByIdAndDelete( patientId );
             // await User.deleteOne({ userId: patientId });
             if (!deletedPatient) {
@@ -39,7 +36,6 @@ exports.removePatient=async(req:Request, res:Response,next:NextFunction): Promis
 exports.getAllPatients=async(req:Request, res:Response,next:NextFunction): Promise<Response | void> => {
     try {
         const patients=await User.find({ role: "Patient" });
-        console.log(patients);
         res.status(200).json(patients);
     } catch (err) {
     next(err);

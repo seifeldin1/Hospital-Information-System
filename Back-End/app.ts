@@ -4,16 +4,18 @@ import dotenv from "dotenv";
 import { errorController } from "./Controllers/error.controller";
 import CustomError from "./Utils/customError";
 import router from './Routes/api.route';
-import doctorRoutes from "./Routes/doctor.routes"; // Ensure the path is correct
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
 const app = express();
 
 connectDB();
+// cookie-parser middleware
+app.use(cookieParser());
+
 
 app.use(express.json());
-app.use("/doctors", doctorRoutes);
 app.use(router);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {

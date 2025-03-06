@@ -27,10 +27,24 @@ export const feedbackController = {
   },
   deleteFeedback: async (req: Request, res: Response, next: NextFunction) => { 
     try {
-       await Feedback.findByIdAndDelete(req.params.id);
-      res.status(200).json({
-        status: "success"
-      });
+      const feedbackId = req.params.id;
+      console.log(`Received patientId: ${feedbackId}`); 
+      if(!feedbackId)
+      {
+        res.status(400).json({message:"No Feedback Id provided!"});
+        return;
+      }
+      else{
+          const feedback= await Feedback.findOne({_id:feedbackId});
+          console.log(feedback);
+          const deletedFeedback=await Feedback.findByIdAndDelete( feedbackId );
+          // await User.deleteOne({ userId: patientId });
+          if (!deletedFeedback) {
+              res.status(404).json({ message: "Feedback not found" });
+              return;
+          }
+          res.status(200).json({message:'Feedback removed successfully!!'});
+      }
     } catch (error) {
       next(error);
     }

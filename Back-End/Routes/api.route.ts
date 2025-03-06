@@ -9,7 +9,7 @@ import patientRoutes from './patient.routes';
 
 router.use("/feedback", feedbackRoutes);
 router.use('/admin',adminRouter);
-router.use("/doctor" , doctorRoutes)
+router.use("/doctors" , doctorRoutes)
 router.use("/" , registrationRoutes)
 router.use("/patient",patientRoutes)
 
