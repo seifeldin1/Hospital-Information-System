@@ -14,7 +14,6 @@ const verifyToken =(req:CustomRequest,res:Response,next:NextFunction):void=>{
         }
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-            console.log(decoded+" hey");
             req.user = decoded as {email?:string, role?: string };
         } catch (err) {
             res.status(401).send('Invalid Token');

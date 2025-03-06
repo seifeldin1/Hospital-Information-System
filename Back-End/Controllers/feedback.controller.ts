@@ -4,8 +4,8 @@ import { Request, Response, NextFunction } from "express";
 export const feedbackController = {
   createFeedback: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { feedback, rating } = req.body;
-      const feedbackData = await Feedback.create({ feedback, rating });
+      const { feedback, rating,userId } = req.body;
+      const feedbackData = await Feedback.create({ feedback, rating,userId });
       res.status(201).json({
       status: "success",
       data: feedbackData,
@@ -38,7 +38,6 @@ export const feedbackController = {
           const feedback= await Feedback.findOne({_id:feedbackId});
           console.log(feedback);
           const deletedFeedback=await Feedback.findByIdAndDelete( feedbackId );
-          // await User.deleteOne({ userId: patientId });
           if (!deletedFeedback) {
               res.status(404).json({ message: "Feedback not found" });
               return;
