@@ -5,65 +5,230 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Radiology Department</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, rgba(80, 140, 240, 0.7), rgba(100, 160, 230, 0.7));
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #444;
+            text-transform: uppercase;
+        }
+
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Navbar styles */
+        .nav-link {
+            color: #555 !important;
+        }
+
+        .nav-link:hover {
+            color: #007bff !important;
+        }
+
+        .navbar-brand {
+            color: #007bff;
+        }
+
+        /* About section */
+        .about-container {
+            padding: 50px 20px;
+            background: #fff;
+            margin-top: 100px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .about-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .about-card:hover {
+            transform: scale(1.05);
+        }
+
+        .img-fluid {
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #007bff;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #ffd700;
+        }
+
+        .social-media-icons i {
+            font-size: 30px;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-media-icons i:hover {
+            color: #ffd700;
+        }
+
+        /* Button Styles */
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+
+        /* Scroll Animations */
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Modal */
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar..."> </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <h1 class="text-center">About Us</h1>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand" href="#">Radiology Department</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-                <img src="images/team.webp" alt="Our Team (Probably Aliens)" width="590" height="200" class="img-fluid rounded mx-auto d-block mb-4">
+    <div class="container about-container">
+        <h1>About Us</h1>
+        <img src="images/team.webp" alt="Our Team" class="img-fluid mb-4">
+        
+        <div class="about-card hidden">
+            <p>Welcome to the Radiology Department, where technology meets creativity... and sometimes, a dash of humor.</p>
+        </div>
 
-                <p>
-                    Welcome to the Radiology Department, where we use cutting-edge technology (and a healthy dose of guesswork) to peer into the shadowy depths of your anatomy. We're a team of highly trained professionals (at least more than a week), dedicated to providing you with the most... *interesting* diagnostic imaging experience this side of the uncanny valley.
-                </p>
+        <h2>Our Mission</h2>
+        <div class="about-card hidden">
+            <p>To ensure your health is in focus, we strive to bring you the most accurate diagnostic images.</p>
+        </div>
 
-                <h2>Our Mission (If We Choose to Accept It)</h2>
-                <p>
-                    Our mission is to make sure you don't have any extra organs you weren't aware of. We strive to provide accurate results (most of the time), so you can get back to your regularly boring life .
-                </p>
+        <h2>Our Team</h2>
+        <div class="about-card hidden">
+            <ul>
+                <li><strong>Dr. Kareem:</strong> A diagnostic expert with a love for puzzles and a knack for keeping things light-hearted.</li>
+                <li><strong>Dr. Nihad:</strong> Our insightful owl who makes sure the team stays on track (and keeps the candy drawer stocked).</li>
+                <li><strong>Dr. Mohamed:</strong> Known for his calm demeanor and sharp diagnostic mind, even under pressure.</li>
+            </ul>
+        </div>
 
-                <h2>Our Team (The Freaks, Geeks, and X-ray Enthusiasts)</h2>
-                <p>
-                    We're a motley crew, united by our shared fascination with bones and the strange noises our machines make (except Nihad we are just scared of her). Our team includes:
-                </p>
+        <h2>Why Choose Us?</h2>
+        <div class="about-card hidden">
+            <ul>
+                <li>State-of-the-art equipment and imaging technology.</li>
+                <li>A dedicated team of professionals who care about your health and well-being.</li>
+                <li>Fast, reliable results with a touch of humor.</li>
+            </ul>
+        </div>
 
-                <ul>
-                    <li><strong>Dr. Kareem (The Otterly Clueless):</strong> Our resident otter, whose diagnostic skills are inversely proportional to his ability to keep his lab coat clean. He swears he saw a spleen once... maybe.</li>
-                    <li><strong>Dr. Nihad (The Owl of Ominous Wisdom... and Questionable ACTIONS):</strong> Our enigmatic owl, who speaks in riddles and dispenses medical advice alongside dubious-looking candies.  She's rumored to have a PhD in radiology (we are not sure) and KILLING?.</li>
-                    <li><strong>Dr. Mohamed (The Bear Minimum):</strong> Our lovable bear, whose bedside manner is only slightly hampered by his tendency to accidentally perform good adjustments.</li>
-                    <li><strong>And a collection of other individuals who may or may not be human. We're not entirely sure.</strong></li>
-                </ul>
+        <button class="btn-custom" data-toggle="modal" data-target="#contactModal">Contact Us</button>
+    </div>
 
-                <h2>Why Choose Us? (Besides the Sheer Weirdness Factor)</h2>
-                <p>
-                    Because we're... unique! We offer:
-                </p>
-
-                <ul>
-                    <li>Equipment that's probably up to code (mostly).</li>
-                    <li>A staff that's... enthusiastic.</li>
-                    <li>Results that are... definitely something.</li>
-                    <li>And an experience you'll never forget (for better or worse).</li>
-                </ul>
-
-                <p>
-                    So, if you're feeling brave (or just really need a picture of your insides), come on down! We promise it'll be an adventure... possibly a life-altering one.
-                </p>
-
-                <p>
-                    <strong>Disclaimer:</strong> We are not responsible for any sudden mutations, spontaneous combustions, or existential dread. Also, if you happen to die, Dr. Nihad said she warned you.
-                </p>
+    <!-- Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:radiology@hospital.com">radiology@hospital.com</a></p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Address: 123 Hospital St., Cityville</p>
             </div>
         </div>
     </div>
 
+    <footer class="footer">
+        <div>
+            <h4>Follow Us</h4>
+            <div class="social-media-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2025 Radiology Department, Hospital Information System</p>
+    </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        window.addEventListener("scroll", function () {
+            const elements = document.querySelectorAll('.hidden');
+            elements.forEach((element) => {
+                const position = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (position < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+    </script>
 </body>
 </html>

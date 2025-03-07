@@ -6,34 +6,283 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hospital Information System - Radiology</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-       /*adjust navigation bar and scroll on x-axis for big tables (if exists)*/
         body {
-            padding-top: 70px;
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+            margin-top: 80px;
         }
 
-        .table-responsive {
-            overflow-x: auto; 
+        .navbar {
+            background-color: #007bff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .best-doctors .col-md-4 {
+            margin-bottom: 30px;
+        }
+
+        .best-doctors img {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .best-doctors h3 {
+            text-align: center;
+            font-size: 1.4rem;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .feedback-carousel .carousel-item {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #555;
+            text-align: center;
+        }
+
+        .feedback-carousel .carousel-item p {
+            padding: 20px 40px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .appointment-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .appointment-form h2 {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer h5 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .footer a {
+            color: white !important;
+            font-size: 1rem;
+        }
+
+        .footer a:hover {
+            color: #d1d1d1 !important;
+        }
+
+        .footer .social-icons a {
+            margin-right: 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .footer .social-icons a:hover {
+            color: #d1d1d1;
+        }
+
+        .map-container iframe {
+            border-radius: 8px;
+        }
+        /* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .navbar .nav-link {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    .carousel-item img {
+        height: 400px;
+    }
+
+    .carousel-caption h3 {
+        font-size: 1.4rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+
+    .section-heading {
+        font-size: 1.5rem;
+    }
+
+    .best-doctors .col-md-4 {
+        margin-bottom: 15px;
+        flex: 1 0 100%;
+    }
+
+    .feedback-carousel .carousel-item {
+        font-size: 1rem;
+    }
+
+    .appointment-form {
+        padding: 20px;
+    }
+
+    .footer h5 {
+        font-size: 1.1rem;
+    }
+
+    .footer .social-icons a {
+        font-size: 1.25rem;
+    }
+
+    .map-container iframe {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .carousel-item img {
+        height: 300px;
+    }
+
+    .carousel-caption h3 {
+        font-size: 1.2rem;
+    }
+
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+
+    .section-heading {
+        font-size: 1.25rem;
+    }
+
+    .best-doctors .col-md-4 {
+        flex: 1 0 100%;
+    }
+
+    .feedback-carousel .carousel-item {
+        font-size: 0.95rem;
+    }
+
+    .appointment-form {
+        padding: 15px;
+    }
+
+    .footer h5 {
+        font-size: 1rem;
+    }
+
+    .footer .social-icons a {
+        font-size: 1.1rem;
+    }
+
+    .map-container iframe {
+        height: 200px;
+    }
+}
+
     </style>
 </head>
 
 <body>
- <!--navigation bar (bootstrap) -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">Radiology Department</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">About</a>
@@ -41,46 +290,69 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">Login</a>
                 </li>
-
             </ul>
         </div>
     </nav>
 
- <!--to show the best doctors (static) -->
-    <div class="container">
-        <h1>Welcome to the Radiology Department</h1>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="hero.webp" class="d-block w-100" alt="Radiology Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Advanced Imaging Technology</h3>
+                    <p>We offer state-of-the-art imaging services.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./images/care.jpg" class="d-block w-100" alt="Radiology Image 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Experienced Radiologists</h3>
+                    <p>Our team is dedicated to providing accurate diagnoses.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./images/images.jpg" class="d-block w-100" alt="Radiology Image 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h3>Patient-Centered Care</h3>
+                    <p>Your comfort and well-being are our top priorities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <section id="best-doctors">
-            <h2>Our Top Doctors</h2>
+    <div class="container">
+        <h1 class="section-heading">Welcome to the Radiology Department</h1>
+
+        <section class="best-doctors">
+            <h2 class="section-heading">Our Top Doctors</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <h3>Dr. Mohamed </h3>
+                    <h3>Dr. Mohamed</h3>
                     <img src="images/pic1.webp" alt="Doctor 1" class="img-fluid">
                 </div>
                 <div class="col-md-4">
-                    <h3>Dr. Nihad </h3>
+                    <h3>Dr. Nihad</h3>
                     <img src="images/pic2.webp" alt="Doctor 2" class="img-fluid">
                 </div>
                 <div class="col-md-4">
-                    <h3>Dr. kareem </h3>
+                    <h3>Dr. Kareem</h3>
                     <img src="images/pic3.webp" alt="Doctor 3" class="img-fluid">
                 </div>
             </div>
         </section>
 
-        <!--a slide show using bootstarp to scroll the feedbacks-->
-        <section class="container my-4" id="patient-feedback">
-            <h2 class="text-center">Patient Feedback</h2>
-            <div class="carousel slide" id="feedbackCarousel" data-bs-ride="carousel">
+        <section class="feedback-carousel my-5">
+            <h2 class="section-heading">Patient Feedback</h2>
+            <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <p class="text-center">"دكتور توب التوب" - Kareem</p>
+                        <p>"Dr. Top Top!" - Kareem</p>
                     </div>
                     <div class="carousel-item">
-                        <p class="text-center">"ابني اتعالج بسبب ربنا اولا ثم دكتور نيهاد" - Nihad</p>
+                        <p>"My son was treated because of God, then Dr. Nihad." - Nihad</p>
                     </div>
                     <div class="carousel-item">
-                        <p class="text-center">"ابني مات في المستشفي ديه حسبي الله و نعم الوكيل فيكي يا دكتوره نيهاد" - Nihad</p>
+                        <p>"My son died in this hospital. May God be the judge." - Nihad</p>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#feedbackCarousel" role="button" data-bs-slide="prev">
@@ -91,20 +363,117 @@
                 </a>
             </div>
         </section>
-        
+
+        <section class="appointment-form">
+            <h2>Book Your Appointment</h2>
+            <form class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="name">Full Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="appointment-date">Appointment Date</label>
+                        <input type="date" class="form-control" id="appointment-date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message or Additional Information</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Enter any additional information"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit Appointment Request</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="container my-5" id="hospital-location">
+            <h2 class="section-heading">Our Location</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345096793!2d144.9556513159045!3d-37.8173139797517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f120b909%3A0xb1d6a3ef9f1a50f2!2sRoyal%20Melbourne%20Hospital!5e0!3m2!1sen!2sus!4v1617128296465!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
 
     </div>
-    <footer class="footer mt-auto py-3 bg-light"> <!--this is bootstrap for color and margin-->
-        <div class="container text-center">
-            <span class="text-muted">Contact Us: radiology@hospital.com | (123) 456-7890</span>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: <a href="mailto:radiology@hospital.com">radiology@hospital.com</a></li>
+                        <li>Phone: (123) 456-7890</li>
+                        <li>Address: 123 Hospital St., Cityville</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="login.html">Patient Login</a></li>
+                        <li><a href="#book-appointment-form">Book Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-unstyled social-icons">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <span class="text-muted">&copy; 2025 Radiology Department, Hospital Information System. BIGFATMAN.</span>
+            </div>
         </div>
     </footer>
-
-<!--script related to bootstarp and place holders data-->
-
+    <script>
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+    
+            const requiredFields = document.querySelectorAll('input[required], textarea[required]');
+            let formIsValid = true;
+    
+            requiredFields.forEach(function (field) {
+                if (!field.value.trim()) {
+                    formIsValid = false;
+                    field.classList.add('is-invalid'); 
+                } else {
+                    field.classList.remove('is-invalid'); 
+                }
+            });
+    
+            if (formIsValid) {
+                console.log('Form submitted successfully!');
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        });
+    </script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script> </body>
+</body>
 
 </html>
