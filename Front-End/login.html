@@ -267,11 +267,42 @@
         </div>
     </footer>
     <script>
-        // Add event listener to login form (after script.js is loaded)
         const loginForm = document.getElementById('loginForm');
-        if (loginForm) {
-            loginForm.addEventListener('submit', login);
-        }
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Make API call to login endpoint
+            fetch('http://localhost:3000/login', { // Use the correct API endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Login failed');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Store user details and token in local storage
+                localStorage.setItem('userDetails', JSON.stringify(data.userDetails));
+                localStorage.setItem('token', data.token);
+
+                // Redirect to profile page or home page
+                window.location.href = 'profile.html'; // Or 'index.html'
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+        });
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
