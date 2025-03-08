@@ -18,7 +18,7 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-       
+            
             width: 100%;  
             max-width: 500px;
             margin-bottom: 20px; 
@@ -42,24 +42,24 @@
             padding-bottom: 20px;
         }
 
-        /* New Styles for layout */
+        
         .main-content {
             display: flex;  
             flex-wrap: wrap; 
             justify-content: space-between; 
-            align-items: flex-start; 
-            
+            align-items: flex-start; /* Align items to the top */
+            /*padding: 20px;*/
             margin:2rem;
         }
         .form-column{
-              flex: 0 0 45%; 
+              flex: 0 0 45%;
         }
 
         .image-column {
             flex: 0 0 50%;  
              
              display: flex;
-              justify-content: center; 
+              justify-content: center; /* Center the image horizontally */
               align-items:center;
 
         }
@@ -67,7 +67,7 @@
         .image-column img {
             max-width: 100%; 
             height: auto;    
-            display: block;  
+            display: block; 
             border-radius:10px;
         }
 
@@ -94,6 +94,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a> </li>
             </ul>
         </div>
     </nav>

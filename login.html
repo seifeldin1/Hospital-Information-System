@@ -10,17 +10,17 @@
             min-height: 100vh;
             background-color: #f8f9fa;
             display: flex;
-            flex-direction: column; 
-            padding-top: 70px; 
+            flex-direction: column; /* Stack navbar, content, footer vertically */
+            padding-top: 70px; /*  Space for the fixed navbar */
         }
 
         .main-content {
             display: flex;
-            flex-wrap: wrap; 
-            justify-content: space-between; 
-            align-items: flex-start; 
-            padding: 20px; 
-            flex-grow: 1; 
+            flex-wrap: wrap; /*  Wrap to next line on smaller screens */
+            justify-content: space-between; /* Space between login and image */
+            align-items: flex-start; /* Align to top */
+            padding: 20px; /* Add some padding around the content */
+            flex-grow: 1; /* Allow the main content to fill available space */
         }
 
 
@@ -29,8 +29,8 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;  
-            max-width: 400px; 
+            width: 100%;  /* Full width within its column */
+            max-width: 400px; /* Limit maximum width */
            margin-left: 11rem;
             margin-top: 2rem; 
         }
@@ -54,14 +54,14 @@
 
         }
 
-      
+        /*  Social Icon Styles (Optional, if using Font Awesome) */
          .fab {
-            color: #007bff; 
+            color: #007bff; /* Bootstrap primary color */
             margin-right: 10px;
         }
 
         .fab:hover {
-             color: #0056b3; 
+             color: #0056b3; /* Darker blue on hover */
         }
 
          a {
@@ -74,7 +74,7 @@
         }
 
 
-       
+    
         .map-responsive {
             position: relative;
             overflow: hidden;
@@ -91,7 +91,7 @@
             height: 75%;
         }
 
-         
+  
         .image-column {
             flex: 0 0 48%;  
             display: flex;
@@ -117,7 +117,7 @@
             padding-bottom: 20px;
         }
 
-        
+      
         @media (max-width: 768px) {
             .main-content {
                 flex-direction: column; 
@@ -131,7 +131,6 @@
              }
         }
 
-        /* Appointment Button Styling */
         #book-appointment .btn-primary {
             background-color: #007bff;
             border: none;
@@ -144,7 +143,7 @@
             background-color: #0056b3;
         }
 
-        
+   
         #book-appointment-form {
             background-color: #f8f9fa;
             padding: 30px;
@@ -190,6 +189,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a> </li>
 
             </ul>
         </div>
@@ -265,6 +266,13 @@
             </div>
         </div>
     </footer>
+    <script>
+        // Add event listener to login form (after script.js is loaded)
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', login);
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
