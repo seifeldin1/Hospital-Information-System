@@ -4,6 +4,8 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -23,6 +25,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.html">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a> </li>
 
             </ul>
         </div>
@@ -31,62 +35,189 @@
     <!--get the info from the database for now simple json file in js-->
     <div class="container">
         <h1>User Profile</h1>
-        <div id="profile-content">
-            </div>
+        <div id="profile-content"></div>
     </div>
+    
+    <div class="feedback-container">
+        <!-- Feedback Form -->
+        <div class="feedback-box">
+            <h3>Submit Feedback</h3>
+            <form id="feedback-form">
+                <label for="feedback-text">Your Feedback:</label>
+                <textarea id="feedback-text" rows="6" placeholder="Write your feedback..." required></textarea>
+                <br>
+    
+                <label for="rating">Your Rating:</label>
+                <select id="rating" required>
+                    <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                    <option value="4">⭐⭐⭐⭐ (4)</option>
+                    <option value="3">⭐⭐⭐ (3)</option>
+                    <option value="2">⭐⭐ (2)</option>
+                    <option value="1">⭐ (1)</option>
+                </select>
+                <br>
+    
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    
+        <!-- Feedback Display Table -->
+        <div class="feedback-table">
+            <h3>My Feedback</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feedback</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody id="patient-feedback">
+                    <!-- Feedback entries will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    
 
-    <footer class="footer mt-auto py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <!-- Contact Section -->
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <ul class="list-unstyled">
-                        <li>Email: <a href="mailto:radiology@hospital.com">radiology@hospital.com</a></li>
-                        <li>Phone: (123) 456-7890</li>
-                        <li>Address: 123 Hospital St., Cityville</li>
-                    </ul>
-                </div>
     
-                <!-- Quick Links -->
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="login.html">Patient Login</a></li>
-                        <li><a href="#">Book Appointment</a></li>
-                    </ul>
-                </div>
-    
-                <!-- Social Media Links -->
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <ul class="list-unstyled d-flex">
-                        <li class="mr-3">
-                            <a href="#"><i class="fab fa-facebook fa-2x"></i> Facebook</a>
-                        </li>
-                        <li class="mr-3">
-                            <a href="#"><i class="fab fa-twitter fa-2x"></i> Twitter</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fab fa-instagram fa-2x"></i> Instagram</a>
-                        </li>
-                    </ul>
-                </div>
+
+<footer class="footer mt-auto py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Section -->
+            <div class="col-md-4">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li>Email: <a href="mailto:radiology@hospital.com">radiology@hospital.com</a></li>
+                    <li>Phone: (123) 456-7890</li>
+                    <li>Address: 123 Hospital St., Cityville</li>
+                </ul>
             </div>
-    
-            <div class="text-center mt-4">
-                <span class="text-muted">&copy; 2025 Radiology Department, Hospital Information System. BIGFATMAN.</span>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="login.html">Patient Login</a></li>
+                    <li><a href="#book-appointment-form">Book Appointment</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <ul class="list-unstyled d-flex">
+                    <li class="mr-3">
+                        <a href="#"><i class="fab fa-facebook fa-2x"></i> Facebook</a>
+                    </li>
+                    <li class="mr-3">
+                        <a href="#"><i class="fab fa-twitter fa-2x"></i> Twitter</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-instagram fa-2x"></i> Instagram</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </footer>
+
+        <div class="text-center mt-4">
+            <span class="text-muted">&copy; 2025 Radiology Department, Hospital Information System. BIGFATMAN.</span>
+        </div>
+    </div>
+</footer>
     
     <style>
+            body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-top: 2.5rem;
+        }
+
+        /* Layout Styling */
+        .feedback-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        /* Feedback Box */
+        .feedback-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 50%;
+        }
+
+        /* Feedback Table */
+        .feedback-table {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 50%;
+        }
+
+        .feedback-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .feedback-table th, .feedback-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .feedback-table th {
+            background: #f4f4f4;
+        }
+
+        /* Form Inputs */
+        textarea {
+            width: 100%;
+            height: 120px; 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Button Styling */
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
         .map-responsive {
             position: relative;
             overflow: hidden;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%; 
             height: 0;
         }
     
@@ -100,12 +231,12 @@
         }
 
         .fab {
-        color: #007bff; /* Bootstrap primary color */
+        color: #007bff; 
         margin-right: 10px;
     }
 
     .fab:hover {
-        color: #0056b3; /* Darker blue on hover */
+        color: #0056b3; 
     }
 
     /* Appointment Button Styling */
