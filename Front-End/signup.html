@@ -194,6 +194,51 @@
         </div>
     </footer>
 
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+    
+          const firstName = document.getElementById('firstName').value;
+          const lastName = document.getElementById('lastName').value;
+          const birthdate = document.getElementById('birthdate').value;
+          const gender = document.getElementById('gender').value;
+          const email = document.getElementById('email').value;
+          const phone = document.getElementById('phone').value;
+          const password = document.getElementById('password').value;
+    
+          // Make API call to signup endpoint
+          fetch('http://localhost:3000/signUp', { // Use the correct API endpoint
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              firstName: firstName,
+              lastName: lastName,
+              birthDate: birthdate, // Note the camelCase for birthDate
+              gender: gender,
+              email: email,
+              phone: phone,
+              password: password
+            })
+          })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Signup failed');
+              }
+              return response.json(); // You might not need to parse the response if it's empty
+            })
+            .then(() => {
+              // Redirect to login page after successful signup
+              window.location.href = 'login.html';
+            })
+            .catch(error => {
+              alert(error.message);
+            });
+        });
+      </script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
